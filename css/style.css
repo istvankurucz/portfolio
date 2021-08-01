@@ -1,0 +1,1088 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&display=swap");
+
+/* ---------------------------------------- General CSS settings ---------------------------------------- */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "Montserrat", sans-serif;
+}
+body::-webkit-scrollbar {
+	width: 10px;
+}
+body::-webkit-scrollbar-track {
+	background: rgb(0, 8, 54);
+}
+body::-webkit-scrollbar-thumb {
+	background: rgb(0, 32, 93);
+	border-radius: 5px;
+}
+
+::selection {
+	background: rgba(253, 29, 125, 0.8);
+}
+
+/* ---------------------------------------- General classes ---------------------------------------- */
+.button {
+	padding: 10px 30px;
+	border: 2px solid rgb(253, 29, 125);
+	border-radius: 50px;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1.5;
+	cursor: pointer;
+	transition: all 0.2s linear;
+}
+.filled {
+	color: white;
+	background: rgb(253, 29, 125);
+}
+.outlined {
+	color: rgb(253, 29, 125);
+	background: transparent;
+}
+.button:hover {
+	padding: 10px 60px;
+	transition: all 0.2s linear;
+}
+.button.filled:hover {
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+.button.outlined:hover {
+	color: white;
+	background: rgb(253, 29, 125);
+}
+
+section {
+	max-width: 100vw;
+	width: 100%;
+	padding: 80px 10px;
+}
+.light {
+	color: rgb(0, 8, 54);
+	background: #f2f2f2;
+}
+.dark {
+	color: #f2f2f2;
+	background: rgb(0, 8, 54);
+}
+
+.title {
+	font-size: 210%;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 50px;
+}
+.light.title {
+	color: rgb(0, 8, 54);
+}
+.dark.title {
+	color: #f2f2f2;
+}
+
+.underline {
+	position: relative;
+}
+.underline::after {
+	content: "";
+	width: 100%;
+	height: 3px;
+	background: rgb(253, 29, 125);
+	border-radius: 2px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.social {
+	margin: 25px;
+}
+.social a {
+	color: #f2f2f2;
+	font-size: 24px;
+	padding: 10px;
+	transition: all 0.2s linear;
+}
+.social a:nth-child(2) {
+	margin: 0 10px 0 20px;
+}
+.social a:nth-child(3) {
+	margin: 0 20px 0 10px;
+}
+.social a:hover {
+	color: rgb(253, 29, 125);
+	transition: all 0.2s linear;
+}
+
+/* ---------------------------------------- Header ---------------------------------------- */
+header {
+	max-width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	color: rgb(0, 8, 54);
+	background: white;
+
+	display: flex;
+	align-items: center;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+	z-index: 999;
+}
+header.top {
+	color: #f2f2f2;
+	background: transparent;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.8);
+}
+header img {
+	width: 50px;
+	height: 50px;
+	border: 1px solid rgb(0, 8, 54);
+	border-radius: 50%;
+	display: none;
+	transition: border 0.2s linear;
+}
+header img:hover {
+	border: 1px solid rgb(253, 29, 125);
+	transition: border 0.2s linear;
+}
+
+/* Classic menu */
+.normal-menu {
+	width: 100%;
+	height: 75px;
+	padding: 10px 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.menu {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+.menu-item {
+	color: inherit;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 1.5;
+	padding: 2px;
+	margin: 0 10px;
+	text-decoration: none;
+	position: relative;
+	transition: color 0.2s linear;
+}
+.menu-item::after,
+.menu-item.active::after {
+	content: "";
+	width: 0%;
+	height: 3px;
+	background: rgb(253, 29, 125);
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transition: width 0.2s linear;
+}
+.menu-item.active::after {
+	width: 100%;
+}
+.menu-item:hover,
+.menu-item.active,
+.ham-menu.clicked .menu-item:hover,
+.ham-menu.clicked .menu-item.active {
+	color: rgb(253, 29, 125);
+	transition: color 0.2s linear;
+}
+.menu-item:hover::after {
+	width: 100%;
+	transition: width 0.2s linear;
+}
+
+/* Hamburger menu */
+.ham-menu {
+	width: 100%;
+	padding: 10px 30px;
+	display: none;
+}
+.ham-menu.clicked {
+	background: white;
+}
+.ham-menu .header {
+	width: 100%;
+	height: 55px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.ham-menu .header i {
+	padding: 5px;
+	cursor: pointer;
+	transition: color 0.2s linear;
+}
+.ham-menu .fa-bars {
+	font-size: 24px;
+}
+.ham-menu .fa-times {
+	display: none;
+	font-size: 26px;
+}
+.ham-menu .header i:hover,
+.ham-menu.clicked .header i:hover {
+	color: rgb(253, 29, 125);
+	transition: color 0.2s linear;
+}
+.ham-menu .items {
+	display: none;
+	flex-flow: column nowrap;
+	padding-top: 20px;
+}
+.ham-menu .items div {
+	margin: 15px 0;
+}
+.ham-menu.clicked .items div a,
+.ham-menu.clicked .header i {
+	color: rgb(0, 8, 54);
+}
+
+/* ---------------------------------------- About ---------------------------------------- */
+#about {
+	min-height: 100vh;
+	background: url("/pics/bg.jpg") repeat;
+	background-size: cover;
+}
+#about .about-inner {
+	width: 60%;
+	margin: 0px auto;
+	padding-top: 30px;
+	text-align: center;
+}
+#about .about-inner img {
+	width: 250px;
+	height: 250px;
+	border: 1px solid rgb(253, 29, 125);
+	border-radius: 50%;
+	animation: show-pic 0.7s linear 1;
+}
+@keyframes show-pic {
+	from {
+		width: 0;
+		height: 0;
+	}
+	to {
+		width: 250px;
+		height: 250px;
+	}
+}
+#about .about-inner h1 {
+	font-size: 220%;
+	margin-top: 20px;
+	line-height: 1.6;
+}
+#about .text::after {
+	content: "tanuló";
+	color: rgb(253, 29, 125);
+	animation: textanim 4s linear infinite;
+}
+@keyframes textanim {
+	from {
+		content: "tanuló";
+	}
+	to {
+		content: "programozó";
+	}
+}
+#about .description {
+	line-height: 1.6;
+	margin-top: 15px;
+}
+#about .button.filled {
+	animation: cv-pulse 1s linear infinite alternate;
+}
+@keyframes cv-pulse {
+	from {
+		box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+	}
+	to {
+		box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+	}
+}
+
+/* ---------------------------------------- Education ---------------------------------------- */
+#education .boxes {
+	margin: 20px 10px 20px 80px;
+	position: relative;
+}
+#education .boxes::before {
+	content: "";
+	width: 2px;
+	height: 105%;
+	background: rgb(0, 8, 54);
+	border-radius: 1px;
+	position: absolute;
+	left: -30px;
+	top: -2.5%;
+}
+#education .box {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 10px;
+	margin: 20px 0;
+	border-radius: 3px;
+	box-shadow: 0 0 5px rgb(0, 8, 54);
+	position: relative;
+}
+#education .box::before {
+	content: "";
+	width: 16px;
+	height: 16px;
+	background: rgb(253, 29, 125);
+	border-radius: 50%;
+	position: absolute;
+	left: -37px;
+	top: calc(50% - 8px);
+}
+#education .box img {
+	width: 200px;
+	object-fit: contain;
+	border-radius: 6px;
+	z-index: 1;
+	cursor: pointer;
+	transition: all 0.4s linear;
+}
+#education .box img:hover {
+	transform: scale(1.3);
+	transition: all 0.4s linear;
+}
+#education .box .info {
+	margin-left: 20px;
+}
+#education .box h2 {
+	margin-bottom: 5px;
+}
+#education .box h2 a {
+	color: inherit;
+	font-size: 18px;
+	text-decoration: none;
+	text-transform: uppercase;
+	position: relative;
+}
+#education .box h2 a::after {
+	content: "";
+	width: 0;
+	height: 2px;
+	background: rgb(0, 8, 54);
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transition: all 0.1s linear;
+}
+#education .box h2 a:hover::after {
+	width: 100%;
+	left: 0;
+	transition: all 0.1s linear;
+}
+#education .box .date {
+	font-size: 15px;
+	font-weight: 500;
+	font-style: italic;
+}
+#education ul {
+	margin: 10px 0 0 10px;
+}
+#education ul li {
+	font-size: 14px;
+	line-height: 1.5;
+	margin-bottom: 3px;
+}
+
+/* ---------------------------------------- Works ---------------------------------------- */
+#works .box {
+	width: 95%;
+	margin: 100px 0 100px 25px;
+	display: flex;
+	align-items: flex-start;
+}
+#works .box:last-child {
+	margin-bottom: 0;
+}
+#works .box.left {
+	flex-direction: row;
+}
+#works .box.right {
+	flex-direction: row-reverse;
+}
+#works .box > img {
+	width: 45%;
+	object-fit: contain;
+	border-radius: 10px;
+}
+#works .box.left > img {
+	margin-right: 40px;
+}
+#works .box.right > img {
+	margin-left: 40px;
+}
+#works .box h2 {
+	display: inline;
+	color: white;
+	font-size: 28px;
+	text-transform: uppercase;
+	position: relative;
+	transition: color 0.2s linear;
+}
+#works .box h2:hover {
+	color: rgb(253, 29, 125);
+	transition: color 0.2s linear;
+}
+#works .box .tools {
+	margin: 20px 0;
+}
+#works .box .tools p {
+	margin-top: 10px;
+}
+#works .box .tools .icons {
+	display: flex;
+	align-items: center;
+	margin: 10px;
+}
+#works .box .tools .icons img {
+	width: 30px;
+	height: 30px;
+	margin: 10px 15px 0;
+	cursor: pointer;
+	transition: transform 0.2s linear;
+}
+#works .box .tools .icons img:first-child {
+	margin-left: 0;
+}
+#works .box .tools .icons img:hover {
+	transform: scale(1.5);
+	transition: transform 0.2s linear;
+}
+#works .box .tools .icons i {
+	font-size: 40px;
+}
+#works .box .description {
+	line-height: 1.5;
+	text-align: justify;
+}
+#works .box button {
+	margin: 30px 0 0 20px;
+}
+
+/* ---------------------------------------- Languages ---------------------------------------- */
+#languages .container {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+#languages .language {
+	width: 300px;
+	height: 155px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+	border-radius: 6px;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	transition: all 0.2s linear;
+}
+#languages .language img {
+	width: 300px;
+	height: 155px;
+	border-radius: 6px;
+	transition: all 0.2s linear;
+}
+#languages .language:hover img {
+	transform: scale(1.5);
+	transition: all 0.2s linear;
+}
+#languages .language .info {
+	width: 300px;
+	height: 0;
+	color: #f2f2f2;
+	background: rgba(0, 0, 0, 0.8);
+	border-radius: 6px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: -30px;
+	left: 0;
+	transition: all 0.5s linear;
+}
+#languages .language .info h3 {
+	color: rgb(253, 29, 125);
+	font-size: 20px;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 2px rgb(0, 0, 0);
+	margin-bottom: 15px;
+}
+#languages .language:hover .info {
+	height: 155px;
+	bottom: 0;
+	transition: all 0.5s linear;
+}
+
+/* ---------------------------------------- Other ---------------------------------------- */
+#other .skill {
+	margin: 20px 20px 60px;
+}
+#other .skill:last-child {
+	margin-bottom: 0;
+}
+#other .skill h2 {
+	font-size: 24px;
+	text-shadow: 2px 2px 2px black;
+	margin-bottom: 10px;
+}
+#other .skill:last-child h2 {
+	margin-bottom: 0;
+}
+#other .skill-bar {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 35px 0;
+}
+#other .skill-bar-name {
+	width: 20%;
+	text-transform: uppercase;
+	text-align: right;
+	margin-right: 20px;
+	display: flex;
+	flex-direction: column;
+}
+#other .skill-bar-name > span {
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+/* General settings for the bars */
+#other .bar {
+	width: 65%;
+	height: 10px;
+	background: #f2f2f2;
+	border-radius: 5px;
+	position: relative;
+}
+#other .bar::after {
+	content: "";
+	width: 0;
+	height: 10px;
+	background: rgb(253, 29, 125);
+	border-radius: 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* Bar width settings */
+#other .bar.html::after {
+	animation: html-bar 1.5s linear 4s 1 forwards;
+}
+#other .bar.word::after,
+#other .bar.excel::after {
+	animation: word-bar 1.5s linear 1 forwards;
+}
+#other .bar.ppt::after,
+#other .bar.css::after {
+	animation: ppt-bar 1.5s linear 1 forwards;
+}
+#other .bar.access::after,
+#other .bar.js::after,
+#other .bar.cpp::after {
+	animation: access-bar 1.5s linear 1 forwards;
+}
+#other .bar.c::after {
+	animation: c-bar 1.5s linear 2s 1 forwards;
+}
+#other .bar.python::after {
+	animation: python-bar 1.5s linear 3s 1 forwards;
+}
+
+/* Animation delay settings for the bars */
+#other .bar.excel::after {
+	animation-delay: 0.5s;
+}
+#other .bar.ppt::after {
+	animation-delay: 1s;
+}
+#other .bar.access::after {
+	animation-delay: 1.5s;
+}
+#other .bar.cpp::after {
+	animation-delay: 2.5s;
+}
+#other .bar.js::after {
+	animation-delay: 3.5s;
+}
+#other .bar.css::after {
+	animation-delay: 4.5s;
+}
+@keyframes html-bar {
+	from {
+		width: 0;
+	}
+	to {
+		width: 95%;
+	}
+}
+@keyframes word-bar {
+	from {
+		width: 0;
+	}
+	to {
+		width: 90%;
+	}
+}
+@keyframes ppt-bar {
+	from {
+		width: 0;
+	}
+	to {
+		width: 85%;
+	}
+}
+@keyframes access-bar {
+	from {
+		width: 0;
+	}
+	to {
+		width: 80%;
+	}
+}
+@keyframes c-bar {
+	from {
+		width: 0;
+	}
+	to {
+		width: 75%;
+	}
+}
+@keyframes python-bar {
+	from {
+		width: 0;
+	}
+	to {
+		width: 60%;
+	}
+}
+
+/* General settings for the percent boxes */
+#other .bar .percent {
+	width: 40px;
+	height: 26px;
+	font-size: 14px;
+	font-weight: 500;
+	color: rgb(0, 8, 54);
+	background: rgb(0, 8, 54);
+	border-radius: 6px;
+	padding: 3px 5px;
+	display: grid;
+	place-items: center;
+	position: absolute;
+	top: -32px;
+	animation: show-percent 2s linear 1.5s 1 forwards;
+}
+#other .bar .percent::after {
+	content: "";
+	width: 8px;
+	height: 8px;
+	background: rgb(0, 8, 54);
+	margin-top: 2px;
+	transform: rotate(45deg);
+	animation: show-percent 2s linear 1.5s 1 forwards;
+}
+
+/* Percent boxes position */
+#other .bar.html .percent {
+	left: calc(95% - 20px);
+}
+#other .bar.word .percent,
+#other .bar.excel .percent {
+	left: calc(90% - 20px);
+}
+#other .bar.ppt .percent,
+#other .bar.css .percent {
+	left: calc(85% - 20px);
+}
+#other .bar.access .percent,
+#other .bar.js .percent,
+#other .bar.cpp .percent {
+	left: calc(80% - 20px);
+}
+#other .bar.c .percent {
+	left: calc(75% - 20px);
+}
+#other .bar.python .percent {
+	left: calc(60% - 20px);
+}
+
+/* Animation delay settings for the percent blocks */
+#other .bar.word .percent,
+#other .bar.word .percent::after {
+	animation-delay: 2s;
+}
+#other .bar.excel .percent,
+#other .bar.excel .percent::after {
+	animation-delay: 2.5s;
+}
+#other .bar.ppt .percent,
+#other .bar.ppt .percent::after {
+	animation-delay: 3s;
+}
+#other .bar.access .percent,
+#other .bar.access .percent::after {
+	animation-delay: 3.5s;
+}
+#other .bar.c .percent,
+#other .bar.c .percent::after {
+	animation-delay: 4s;
+}
+#other .bar.cpp .percent,
+#other .bar.cpp .percent::after {
+	animation-delay: 4.5s;
+}
+#other .bar.python .percent,
+#other .bar.python .percent::after {
+	animation-delay: 5s;
+}
+#other .bar.js .percent,
+#other .bar.js .percent::after {
+	animation-delay: 5.5s;
+}
+#other .bar.html .percent,
+#other .bar.html .percent::after {
+	animation-delay: 6s;
+}
+#other .bar.css .percent,
+#other .bar.css .percent::after {
+	animation-delay: 6.5s;
+}
+@keyframes show-percent {
+	from {
+		background: rgb(0, 8, 54);
+	}
+	to {
+		background: #f2f2f2;
+	}
+}
+
+/* ---------------------------------------- Footer ---------------------------------------- */
+footer {
+	color: rgb(0, 8, 54);
+	background: #f2f2f2;
+	padding: 50px 10px;
+}
+footer .menu {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+footer .menu img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 50px;
+}
+footer .items {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+footer .menu-item {
+	color: rgb(0, 8, 54);
+	border-right: 2px solid rgb(253, 29, 125);
+	margin: 0;
+	padding: 0 15px;
+}
+footer .menu-item::after {
+	display: none;
+}
+footer .items div:last-child .menu-item {
+	border: none;
+}
+footer .menu-item:hover::after {
+	display: none;
+}
+
+footer .social {
+	text-align: center;
+	margin: 15px;
+}
+footer .social a {
+	color: rgb(0, 8, 54);
+	font-size: 20px;
+}
+
+footer .freepik {
+	text-align: center;
+	margin: 15px;
+}
+footer .freepik a {
+	color: rgb(253, 29, 125);
+	transition: color 0.2s linear;
+}
+footer .freepik a:hover {
+	color: rgba(253, 29, 125, 0.5);
+	transition: color 0.2s linear;
+}
+footer .copyright {
+	font-weight: 500;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+footer .copyright .underline {
+	padding: 0 2px 2px;
+	margin-left: 5px;
+}
+
+/* ---------------------------------------- Go Top ---------------------------------------- */
+.go-top {
+	display: none;
+}
+.go-top button {
+	width: 45px;
+	height: 45px;
+	color: white;
+	font-weight: 700;
+	font-size: 20px;
+	background: rgb(253, 29, 125);
+	border: none;
+	border-radius: 10px;
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	cursor: pointer;
+	transition: all 0.2s linear;
+}
+.go-top button:hover {
+	box-shadow: 0 0 10px rgb(253, 29, 125);
+	transition: all 0.2s linear;
+}
+
+/* ---------------------------------------- Media queries ---------------------------------------- */
+/* Max-width: 900 px */
+@media screen and (max-width: 900px) {
+	#about .about-inner {
+		width: 70%;
+	}
+	#about .description {
+		font-size: 15px;
+	}
+	#about .social a {
+		font-size: 22px;
+	}
+
+	#education .boxes {
+		margin-left: 60px;
+	}
+	#education .box h2 {
+		max-width: 390px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	#works .box {
+		flex-wrap: wrap;
+	}
+	#works .box > img {
+		width: 100%;
+		margin: 0 auto 30px;
+	}
+
+	footer .menu img {
+		margin-right: 30px;
+	}
+}
+
+/* Max-width: 700 px */
+@media screen and (max-width: 700px) {
+	.normal-menu {
+		display: none;
+	}
+	.ham-menu {
+		display: block;
+	}
+
+	#about .about-inner {
+		width: 90%;
+	}
+	#about .about-inner img {
+		width: 200px;
+		height: 200px;
+	}
+	#about .about-inner h1 {
+		font-size: 200%;
+	}
+	#about .description {
+		text-align: justify;
+	}
+
+	#education .boxes {
+		margin-left: 40px;
+	}
+	#education .box {
+		flex-direction: column;
+	}
+	#education .box img {
+		width: 70%;
+		margin: 0 auto 10px;
+	}
+	#education .box img:hover {
+		transform: scale(1);
+	}
+	#education .box h2 {
+		max-width: 450px;
+	}
+	#education .box .info {
+		margin: 0;
+	}
+
+	#works .box {
+		margin: 100px auto;
+	}
+	#works .box h2 {
+		font-size: 24px;
+	}
+	#works .box .description {
+		font-size: 14px;
+	}
+	#works .box .button {
+		font-size: 18px;
+	}
+	#works .box .button:hover {
+		padding: 10px 50px;
+	}
+
+	#languages .container {
+		flex-direction: column;
+	}
+	#languages .language.english {
+		margin-bottom: 30px;
+	}
+
+	#other .skill h2 {
+		font-size: 22px;
+	}
+	#other .skill-bar-name {
+		font-size: 15px;
+	}
+
+	footer .items {
+		justify-content: center;
+	}
+	footer .menu-item {
+		font-size: 15px;
+	}
+	footer .menu img {
+		display: none;
+	}
+	footer .freepik a {
+		font-size: 14px;
+	}
+
+	.go-top button {
+		font-size: 18px;
+		bottom: 15px;
+		right: 15px;
+	}
+}
+
+/* Max-width: 550px, Min-width: 350px */
+@media screen and (max-width: 550px) and (min-width: 350px) {
+	#about .about-inner h1 {
+		font-size: 175%;
+	}
+	#about .description {
+		text-align: justify;
+	}
+	#about .social a {
+		font-size: 18px;
+	}
+
+	#education .boxes {
+		margin: 20px auto;
+	}
+	#education .boxes::before {
+		display: none;
+	}
+	#education .box {
+		margin: 20px auto;
+	}
+	#education .box::before {
+		display: none;
+	}
+	#education .box h2 {
+		max-width: 320px;
+	}
+
+	#works .title {
+		margin-bottom: -40px;
+	}
+	#works .box .tools .icons img {
+		width: 25px;
+		height: 25px;
+	}
+	#works .box .button {
+		font-size: 16px;
+	}
+
+	#languages .language,
+	#languages .language img {
+		width: 250px;
+		height: 120px;
+	}
+	#languages .language .info {
+		width: 250px;
+	}
+	#languages .language:hover .info {
+		height: 120px;
+	}
+
+	#other .skill h2 {
+		font-size: 20px;
+	}
+
+	footer .items {
+		flex-direction: column;
+	}
+	footer .items div {
+		border: none;
+		padding: 5px 0;
+	}
+	footer .menu-item {
+		font-size: 16px;
+		border: none;
+		padding: 0;
+	}
+	footer .freepik a {
+		font-size: 12px;
+	}
+	footer .copyright {
+		font-size: 14px;
+	}
+
+	.go-top button {
+		width: 40px;
+		height: 40px;
+		font-size: 16px;
+		bottom: 12px;
+		right: 12px;
+	}
+}
